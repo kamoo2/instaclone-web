@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const BButton = styled.input`
+const Button = styled.input`
   width: 100%;
   border: none;
   border-radius: 5px;
@@ -10,18 +10,7 @@ const BButton = styled.input`
   text-align: center;
   padding: 8px 0;
   font-weight: 600;
+  opacity: ${(props) => (props.disabled ? "0.2" : "1")};
 `;
-
-const DisabledButton = styled(BButton)`
-  background-color: lightblue;
-`;
-
-function Button(props) {
-  return props.disabled ? (
-    <DisabledButton {...props} />
-  ) : (
-    <BButton {...props} />
-  );
-}
 
 export default Button;

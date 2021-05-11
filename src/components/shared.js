@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// shared.js에는 공유 스타일만 넣기로 약속
 export const BaseBox = styled.div`
   background-color: white;
   border: 1px solid ${(props) => props.theme.borderColor};
