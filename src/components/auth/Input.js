@@ -5,7 +5,8 @@ const Input = styled.input`
   padding: 10px 7px;
   border-radius: 3px;
   margin-top: 5px;
-  background-color: rgb(250, 250, 250);
+  background-color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.fontColor};
   border: 0.5px solid
     ${(props) => (props.hasError ? "tomato" : props.theme.borderColor)};
   box-sizing: border-box;

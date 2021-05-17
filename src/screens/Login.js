@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import gql from "graphql-tag";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { logUserIn } from "../apollo";
 import AuthLayout from "../components/auth/AuthLayout";
@@ -20,15 +21,21 @@ import routes from "../routes";
 
 const FaceBookLogin = styled.div`
   margin-bottom: 20px;
-  color: #385285;
+  color: #4a69bd;
   span {
     font-weight: 600;
     margin-left: 10px;
   }
 `;
 
+const Notification = styled.div`
+  color: #5352ed;
+  margin-top: 10px;
+`;
+
 const LOGIN_MUTATION = gql`
-  mutation login($username: String!, $password: String!) {
+  #  mutation 이름 : 여기서 이름은 내가 원하는데로 작성가능 그러나 backend의 mutation명과 관련이 있도록
+  mutation Login($username: String!, $password: String!) {
     login(username: $username, password: $password) {
       ok
       token
@@ -37,6 +44,7 @@ const LOGIN_MUTATION = gql`
   }
 `;
 const Login = () => {
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -47,6 +55,10 @@ const Login = () => {
     clearErrors,
   } = useForm({
     mode: "onChange",
+    defaultValues: {
+      username: location?.state?.username || "",
+      password: location?.state?.password || "",
+    },
   });
   const onCompleted = (data) => {
     const {
@@ -87,6 +99,7 @@ const Login = () => {
         <div>
           <FontAwesomeIcon icon={faInstagram} size="3x" />
         </div>
+        <Notification> {location?.state?.message}</Notification>
         <form onSubmit={handleSubmit(onSubmitValid)}>
           <Input
             ref={register({
