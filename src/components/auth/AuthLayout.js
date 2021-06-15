@@ -21,7 +21,7 @@ const Footer = styled.div`
   margin-top: 20px;
 `;
 
-const DarkModeBtn = styled.span`
+const DarkModeBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
